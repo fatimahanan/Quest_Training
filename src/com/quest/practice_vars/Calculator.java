@@ -8,12 +8,7 @@ public class Calculator
     {
         Scanner sc=new Scanner(System.in);
         System.out.println("Enter the starting number : ");
-        while (!sc.hasNextDouble())
-        {
-            System.out.println("Invalid input! Please enter a valid number (double).");
-            sc.next();
-        }
-        double result=sc.nextDouble();
+        double result=validateDoubleNum(sc);
         boolean repeat=true;
         while(repeat)
         {
@@ -31,27 +26,27 @@ public class Calculator
                 sc.next();
             }
             int choice=sc.nextInt();
-            int y=0;
+            double y=0.0;
             switch (choice)
             {
                 case 1:
                     System.out.println("Enter number to add : ");
-                    y=sc.nextInt();
+                    y=validateDoubleNum(sc);
                     result+=y;
                     break;
                 case 2:
                     System.out.println("Enter number to subtract : ");
-                    y=sc.nextInt();
+                    y=validateDoubleNum(sc);
                     result-=y;
                     break;
                 case 3:
                     System.out.println("Enter number to multiply with : ");
-                    y=sc.nextInt();
+                    y=validateDoubleNum(sc);
                     result*=y;
                     break;
                 case 4:
                     System.out.println("Enter number to divide by : ");
-                    y= sc.nextInt();
+                    y= validateDoubleNum(sc);
                     if(y==0)
                     {
                         System.out.println("Error! Enter non-zero number!");
@@ -63,7 +58,7 @@ public class Calculator
                         result=Math.sqrt(result);
                     else
                     {
-                        System.out.println("Error! enter positive number!");
+                        System.out.println("Error! Cannot find square root of negative numbers!");
                     }
                     break;
                 case 6:
@@ -84,7 +79,7 @@ public class Calculator
                     }
                     if(ch!='N'||ch!='Y')
                     {
-                        System.out.println("Error! Enter only Y/N!");
+                        System.out.println("Error! Invalid input");
                         System.out.println("Do you want to continue ? (Enter Y/N) : ");
                         ch=sc.next().charAt(0);
                     }
@@ -93,5 +88,27 @@ public class Calculator
             }
             System.out.println("Result : "+result);
         }
+    }
+    private static double validateDoubleNum(Scanner sc)
+    {
+        double y=0.0;
+        while (!sc.hasNextDouble())
+        {
+            System.out.println("Invalid input! Please enter a valid number.");
+            sc.next();
+        }
+        y=sc.nextDouble();
+        return y;
+    }
+    private static int validateIntNum(Scanner sc)
+    {
+        int y=0;
+        while (!sc.hasNextInt())
+        {
+            System.out.println("Invalid input! Please enter a valid number.");
+            sc.next();
+        }
+        y=sc.nextInt();
+        return y;
     }
 }
