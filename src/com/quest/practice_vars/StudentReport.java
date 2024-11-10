@@ -101,13 +101,13 @@ public class StudentReport
         System.out.println("Enter the score for " + subject + "(1-" + MAX_SCORE + "): ");
         while(score<1||score>MAX_SCORE)
         {
-            while(!sc.hasNextInt())
+            while(!sc.hasNextInt())         //checking if score is integer
             {
                 System.out.println("Error! invalid input. Enter in range (1=100)");
                 sc.next();
             }
             score=sc.nextInt();
-            if(score<1 || score>MAX_SCORE)
+            if(score<1 || score>MAX_SCORE)   //checking if score is within range
             {
                 System.out.println("Error! invalid input. Enter in range (1=100)");
             }

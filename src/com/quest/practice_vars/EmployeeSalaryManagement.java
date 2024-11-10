@@ -71,13 +71,13 @@ public class EmployeeSalaryManagement
         int sal=0;
         while (validFlag)
         {
-            while (!sc.hasNextInt())
+            while (!sc.hasNextInt())  //checking if salary is int
             {
                 System.out.println("Error, invalid input! Enter the "+salType+" salary in the range (0-100000) : ");
                 sc.next();
             }
             sal= sc.nextInt();
-            if (sal<1 || sal>100000)
+            if (sal<1 || sal>100000)  //checking if salary is withing the defined range
             {
                 System.out.println("Error, invalid input! Enter the "+salType+" salary in the range (0-100000) : ");
             }

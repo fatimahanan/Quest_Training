@@ -12,6 +12,7 @@ public class Calculator
         boolean repeat=true;
         while(repeat)
         {
+            //operations menu
             System.out.println("1. Addition");
             System.out.println("2. Subtraction");
             System.out.println("3. Multiplication");

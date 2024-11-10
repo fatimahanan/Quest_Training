@@ -8,7 +8,7 @@ public class DoWhileLoop
     {
         int num;
         Scanner sc = new Scanner(System.in);
-        do
+        do          //loop runs atleast once
         {
             System.out.println("Enter a positive number");
             num=sc.nextInt();
