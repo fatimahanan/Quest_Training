@@ -10,6 +10,7 @@ public class PrimitiveDataTypes
         long longType=250000000L;  //2^63
         float floatType=3.14f;
         double doubleType=40.89;
+        
         char charType='A';
         boolean booleanType=true;
         System.out.println("byte value : "+byteType);
