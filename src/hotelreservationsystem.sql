@@ -155,7 +155,7 @@ SELECT
     c.last_name, 
     c.email
 FROM 
-    Reservations r JOIN Customers c 
+    Reservations r JOIN Customers c
 ON r.customer_id = c.customer_id
 ORDER BY r.check_in_date ASC;
 
