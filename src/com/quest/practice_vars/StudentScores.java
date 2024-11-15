@@ -77,8 +77,7 @@ public class StudentScores
                 {
                     double temp=avgScores[i];
                     avgScores[i]=avgScores[j];
-                    avgScores[j]=temp;
-
+                    avgScores[j]=temp
                     String tempName=names[i];
                     names[i]=names[j];
                     names[j]=tempName;
@@ -89,7 +88,7 @@ public class StudentScores
                 }
             }
         }
-        for (int i = 0; i < names.length; i++)
+        for (int i=0; i<names.length; i++)
         {
             System.out.println("Rank "+(i + 1)+ " - "+names[i] + " (" + ages[i] + " years) -  average score : " + avgScores[i]);
         }
