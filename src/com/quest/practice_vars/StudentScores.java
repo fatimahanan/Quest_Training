@@ -77,7 +77,7 @@ public class StudentScores
                 {
                     double temp=avgScores[i];
                     avgScores[i]=avgScores[j];
-                    avgScores[j]=temp
+                    avgScores[j]=temp;
                     String tempName=names[i];
                     names[i]=names[j];
                     names[j]=tempName;
