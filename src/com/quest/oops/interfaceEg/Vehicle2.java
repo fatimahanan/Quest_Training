@@ -1,4 +1,4 @@
-package com.quest.interfaceEg;
+package com.quest.oops.interfaceEg;
 
 public abstract class Vehicle2
 {
