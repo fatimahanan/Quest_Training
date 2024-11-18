@@ -26,6 +26,4 @@ public class RepeatCount
                 System.out.println(current+"-"+count);
         }
     }
-
-
 }
