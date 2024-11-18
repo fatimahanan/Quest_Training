@@ -2,9 +2,9 @@ package com.quest.oops.interviewDay10;
 
 public abstract class StockAnalyzer
 {
-    String stockName;
-    String stockSymbol;
-    int[] prices;
+    protected String stockName;
+    protected String stockSymbol;
+    protected int[] prices;
 
     public StockAnalyzer(String stockName, String stockSymbol, int[] prices)
     {
@@ -13,10 +13,10 @@ public abstract class StockAnalyzer
         this.prices = prices;
     }
 
-    public abstract int findMaxPrice(int[] prices);
-    public abstract int findMinPrice(int[] prices);
-    public abstract double calculateAveragePrice(int[] prices);
-    public abstract int[] findLongestIncreasingTrend(int[] prices);
-    public abstract void displayAnalysis();
+    protected abstract int findMaxPrice(int[] prices);
+    protected abstract int findMinPrice(int[] prices);
+    protected abstract double calculateAveragePrice(int[] prices);
+    protected abstract int[] findLongestIncreasingTrend(int[] prices);
+    protected abstract void displayAnalysis();
 
 }

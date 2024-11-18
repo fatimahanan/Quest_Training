@@ -1,7 +1,6 @@
 package com.quest.oops.interviewDay10;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class StockMain
 {
@@ -22,13 +21,12 @@ public class StockMain
 
         StockAnalyzer highestAvgPriceStock = getStockWithHighestAvgPrice(stocks);
         System.out.println("\nStock with highest average price: " + highestAvgPriceStock.stockName);
-
-        StockAnalyzer longestTrendStock = getStockWithLongestTrend(stocks);
-        System.out.println("Stock with longest increasing trend: " + longestTrendStock.stockName);
+        String trendString = getStockWithLongestTrend(stocks);
+        System.out.println("Stock with longest increasing trend: " + trendString);
 
     }
 
-    public static StockAnalyzer getStockWithHighestAvgPrice(List<StockAnalyzer> stocks)
+    public static StockAnalyzer getStockWithHighestAvgPrice(ArrayList<StockAnalyzer> stocks)
     {
         StockAnalyzer highestAvgPriceStock = null;
         double highestAvgPrice = Double.MIN_VALUE;
@@ -44,19 +42,35 @@ public class StockMain
         return highestAvgPriceStock;
     }
 
-    public static StockAnalyzer getStockWithLongestTrend(List<StockAnalyzer> stocks)
+    public static String getStockWithLongestTrend(ArrayList<StockAnalyzer> stocks)
     {
-        StockAnalyzer longestTrendStock = null;
+        ArrayList<StockAnalyzer> longestTrend = new ArrayList<>();
         int longestTrendLength = 0;
         for (StockAnalyzer stock : stocks)
         {
             int[] trend = stock.findLongestIncreasingTrend(stock.prices);
-            if (trend[2] > longestTrendLength) {
+            if (trend[2] > longestTrendLength)
+            {
                 longestTrendLength = trend[2];
-                longestTrendStock = stock;
+                longestTrend.clear();
+                longestTrend.add(stock);
+            }
+            else if (trend[2] == longestTrendLength)
+            {
+                // If the trend length is the same as the longest trend, add this stock to the list
+                longestTrend.add(stock);
             }
         }
-        return longestTrendStock;
+        StringBuilder trendString = new StringBuilder();
+        for (StockAnalyzer stock : longestTrend)
+        {
+            trendString.append(stock.stockName).append(",");
+        }
+        if (trendString.length()>0)
+        {
+            trendString.setLength(trendString.length() - 1);
+        }
+        return trendString.toString(); // Return the formatted string
     }
 
 }
