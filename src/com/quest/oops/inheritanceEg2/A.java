@@ -1,4 +1,4 @@
-package com.quest.oops.Test1;
+package com.quest.oops.inheritanceEg2;
 
 public class A extends B
 {
