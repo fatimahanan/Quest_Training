@@ -68,5 +68,9 @@ public class Book
             System.out.println(title+" ("+isbn+") not available in store.");
     }
 
+    public int overdueBookFine(int noOfDays)
+    {
+        return -1;
+    }
 
 }

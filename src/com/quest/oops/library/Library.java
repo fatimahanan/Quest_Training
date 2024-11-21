@@ -4,7 +4,7 @@ package com.quest.oops.library;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Library
+public class Library extends LibraryFunctions
 {
     List<Book> books;
     List<LibraryMember> libraryMembers;
@@ -15,11 +15,14 @@ public class Library
         libraryMembers = new ArrayList<>();
     }
 
+    @Override
     public void addBook(Book book)
     {
+        System.out.println(book.getTitle()+" added successfully\n");
         books.add(book);
     }
 
+    @Override
     public Book searchBook(String key)
     {
         boolean found = false;
@@ -28,6 +31,7 @@ public class Library
             if(String.valueOf(book.getIsbn()).equals(key) || book.getTitle().equals(key) || book.getAuthor().equals(key))
             {
                 found = true;
+                System.out.println("Book "+book.getTitle()+" found");
                 return book;
             }
         }
@@ -39,33 +43,34 @@ public class Library
         return null;
     }
 
-    public boolean borrowBook(int memberID, long isbn)
+    @Override
+    public void borrowBook(int memberID, long isbn)
     {
-        LibraryMember member=findMemberById(memberID);
-        Book book=findBookByIsbn(isbn);
+        LibraryMember member= searchMember(memberID);
+        Book book=searchBook(String.valueOf(isbn));
         if(member!=null && book!=null && book.isAvailable())
         {
-            member.borrowBooks(isbn); //function in book class to add to the list
+            member.borrowBooks(book); //function in book class to add to the list
             book.setAvailable(false); //setter set to false
             System.out.println(book.getTitle()+" book Borrowed\n");
-            return true;
         }
         else
         {
             System.out.println("Cannot borrow Book.\n");
-            return false;
+            return;
         }
     }
 
-    public void returnBook(int memberID, long isbn)
+    @Override
+    public void returnBook(int memberID, long isbn, int noOfDaysOverdue)
     {
-        LibraryMember member=findMemberById(memberID);
-        Book book=findBookByIsbn(isbn);
+        LibraryMember member= searchMember(memberID);
+        Book book=searchBook(String.valueOf(isbn));
         if(member!=null && book!=null && !book.isAvailable())
         {
-            member.returnBooks(isbn); //function in book class to add to the list
-            book.setAvailable(true); //setter set to false
             System.out.println(book.getTitle()+" book Returned\n");
+            member.returnBooks(book,noOfDaysOverdue); //function in book class to add to the list
+            book.setAvailable(true); //setter set to false
         }
         else
         {
@@ -73,11 +78,13 @@ public class Library
         }
     }
 
+    @Override
     public void addMember(LibraryMember member)
     {
         libraryMembers.add(member);
     }
 
+    @Override
     public void displayAllMembers()
     {
         for(LibraryMember member :libraryMembers)
@@ -89,6 +96,7 @@ public class Library
         }
     }
 
+    @Override
     public void displayAvailableBooks()
     {
         for(Book book : books)
@@ -103,25 +111,13 @@ public class Library
         }
     }
 
-    private LibraryMember findMemberById(int memberID)
+    private LibraryMember searchMember(int memberID)
     {
         for (LibraryMember m : libraryMembers)
         {
             if (m.getMemberID() == memberID)
             {
                 return m;
-            }
-        }
-        return null;
-    }
-
-    private Book findBookByIsbn(long isbn)
-    {
-        for (Book b : books)
-        {
-            if (b.getIsbn() == isbn)
-            {
-                return b;
             }
         }
         return null;

@@ -7,9 +7,10 @@ public class LibraryMember
     private int memberID;
     private String name;
     private long phoneNo;
-    private List<Long> borrowedBooks;
+    private List<Book> borrowedBooks;
+    private int noOfDaysOverdue;
 
-    public LibraryMember(int memberID, String name, int phoneNo) {
+    public LibraryMember(int memberID, String name, long phoneNo) {
         this.memberID = memberID;
         this.name = name;
         this.phoneNo = phoneNo;
@@ -40,18 +41,24 @@ public class LibraryMember
         this.phoneNo = phoneNo;
     }
 
-    public List<Long> getBorrowedBooks() {
+    public List<Book> getBorrowedBooks() {
         return borrowedBooks;
     }
 
-    public void borrowBooks(long isbn)
+    public void borrowBooks(Book book)
     {
-        if(!borrowedBooks.contains(isbn))
-            borrowedBooks.add(isbn);
+        if(!borrowedBooks.contains(book))
+            borrowedBooks.add(book);
     }
 
-    public boolean returnBooks(long isbn)
+    public void returnBooks(Book book, int noOfDaysOverdue)
     {
-        return borrowedBooks.remove(isbn);
+        int fine = book.overdueBookFine(noOfDaysOverdue);  // Calculate overdue fine
+        if (fine > 0)
+        {
+            System.out.println("You owe a fine of Rs " + fine + " for the book: " + book.getTitle());
+        }
+        borrowedBooks.remove(book);
     }
+
 }

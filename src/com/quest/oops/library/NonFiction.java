@@ -17,4 +17,9 @@ public class NonFiction extends Book
     }
 
 
+    @Override
+    public int overdueBookFine(int noOfDays)
+    {
+        return noOfDays*5;
+    }
 }

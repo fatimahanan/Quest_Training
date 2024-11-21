@@ -4,7 +4,7 @@ public class Fiction extends Book
 {
     private String genre;
 
-    public Fiction(long isbn, String title, String author, int publicationYear, boolean isAvailable, String genre, double rating)
+    public Fiction(long isbn, String title, String author, int publicationYear, boolean isAvailable, String genre)
     {
         super(isbn, title, author, publicationYear, isAvailable);
         this.genre = genre;
@@ -18,4 +18,9 @@ public class Fiction extends Book
         this.genre = genre;
     }
 
+    @Override
+    public int overdueBookFine(int noOfDays)
+    {
+        return noOfDays*10;
+    }
 }
