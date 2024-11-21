@@ -1,8 +1,8 @@
-package com.quest.oops.CaseStudyWeather;
+package com.quest.WeatherCaseStudy;
 
 public interface WeatherOperations
 {
-    void addWeather(City c);
+    void addWeather(CityWeather c);
     void updateWeather(String cityName,Double currentTemp,Double currentHumidity, String weatherCondition);
     void displayDetailsAllCities();
     void displayDetailsCity(String cityName);

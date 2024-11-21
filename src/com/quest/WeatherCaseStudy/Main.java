@@ -1,6 +1,5 @@
-package com.quest.oops.CaseStudyWeather;
+package com.quest.WeatherCaseStudy;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,23 +7,27 @@ public class Main
 {
     public static void main(String[] args)
     {
-        City c1=new City("New York",22.5,65.0,"sunny");
-        City c2=new City("Tokyo",18.0,80.0,"rainy");
-        City c3=new City("Dubai",43.0,25.0,"sunny");
-        City c4=new City("Mumbai",34.0,82.5,"cloudy");
-        City c5=new City("KL",22.5,65.0,"cloudy");
+        CityWeather c1=new CityWeather("New York",22.5,65.0,"sunny");
+        CityWeather c2=new CityWeather("Tokyo",18.0,80.0,"rainy");
+        CityWeather c3=new CityWeather("Dubai",43.0,25.0,"sunny");
+        CityWeather c4=new CityWeather("Mumbai",34.0,82.5,"rainy");
+        CityWeather c5=new CityWeather("Melbourne",12.5,65.0,"cloudy");
+        CityWeather c6=new CityWeather("LA",18.0,80.0,"cloudy");
 
 
-        ArrayList<City> citiesList=new ArrayList<>();
+        ArrayList<CityWeather> citiesList=new ArrayList<>();
         Weather w=new Weather(citiesList);
 
         w.addWeather(c1);
         w.addWeather(c2);
+        w.addWeather(c3);
+        w.addWeather(c4);
+        w.addWeather(c5);
 
         Scanner sc=new Scanner(System.in);
         int ch;
         do {
-            System.out.println("\n===== Weather Monitoring System Menu =====");
+            System.out.println("\n*****************Weather Monitoring System Menu********************");
             System.out.println("1. Display details of all cities");
             System.out.println("2. Display city details by name");
             System.out.println("3. Find hottest city");

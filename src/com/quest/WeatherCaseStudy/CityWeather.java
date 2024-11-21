@@ -1,13 +1,13 @@
-package com.quest.oops.CaseStudyWeather;
+package com.quest.WeatherCaseStudy;
 
-public class City
+public class CityWeather
 {
     private String cityName;
     private double currentTemperature;
     private double humidityPercentage;
     private String weatherCondition;
 
-    public City(String cityName, double currentTemperature, double humidityPercentage, String weatherCondition) {
+    public CityWeather(String cityName, double currentTemperature, double humidityPercentage, String weatherCondition) {
         this.cityName = cityName;
         this.currentTemperature = currentTemperature;
         this.humidityPercentage = humidityPercentage;

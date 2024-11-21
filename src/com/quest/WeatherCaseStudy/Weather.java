@@ -1,19 +1,19 @@
-package com.quest.oops.CaseStudyWeather;
+package com.quest.WeatherCaseStudy;
 
 import java.util.ArrayList;
 
 public class Weather implements WeatherOperations
 {
     //list of the weather of each city
-    private ArrayList<City> cityWeatherList;
+    private ArrayList<CityWeather> cityWeatherList;
 
 
-    public Weather(ArrayList<City> cityWeatherList) {
+    public Weather(ArrayList<CityWeather> cityWeatherList) {
         this.cityWeatherList = new ArrayList<>();
     }
 
     @Override
-    public void addWeather(City city)
+    public void addWeather(CityWeather city)
     {
         cityWeatherList.add(city);
     }
@@ -21,7 +21,7 @@ public class Weather implements WeatherOperations
     @Override
     public void updateWeather(String cityName, Double currentTemperature, Double humidityPercentage, String weatherCondition)
     {
-        for(City c : cityWeatherList)
+        for(CityWeather c : cityWeatherList)
         {
             if(c.getCityName().equalsIgnoreCase(cityName))
             {
@@ -44,7 +44,7 @@ public class Weather implements WeatherOperations
     @Override
     public void displayDetailsAllCities()
     {
-        for(City c : cityWeatherList)
+        for(CityWeather c : cityWeatherList)
         {
             System.out.println(c.toString());
         }
@@ -53,7 +53,7 @@ public class Weather implements WeatherOperations
     @Override
     public void displayDetailsCity(String cityName)
     {
-        for(City c : cityWeatherList)
+        for(CityWeather c : cityWeatherList)
         {
             if(c.getCityName().equalsIgnoreCase(cityName))
             {
@@ -67,8 +67,8 @@ public class Weather implements WeatherOperations
     @Override
     public String findHottestCity()
     {
-        City hottestCity = cityWeatherList.get(0); //first city temperature
-        for (City c : cityWeatherList)
+        CityWeather hottestCity = cityWeatherList.get(0); //first city temperature
+        for (CityWeather c : cityWeatherList)
         {
             if(c.getCurrentTemperature()> hottestCity.getCurrentTemperature())
             {
@@ -82,8 +82,8 @@ public class Weather implements WeatherOperations
     @Override
     public String findColdestCity()
     {
-        City coldestCity = cityWeatherList.get(0); //first city temperature
-        for (City c : cityWeatherList)
+        CityWeather coldestCity = cityWeatherList.get(0); //first city temperature
+        for (CityWeather c : cityWeatherList)
         {
             if(c.getCurrentTemperature()<coldestCity.getCurrentTemperature())
             {
@@ -97,7 +97,7 @@ public class Weather implements WeatherOperations
     public double calculateAverageCurrentTemperature()
     {
         double sum = 0;
-        for (City c : cityWeatherList)
+        for (CityWeather c : cityWeatherList)
         {
             sum += c.getCurrentTemperature();
         }
@@ -107,7 +107,7 @@ public class Weather implements WeatherOperations
     public void displayHumidCities()
     {
         boolean found=false;
-        for (City c : cityWeatherList)
+        for (CityWeather c : cityWeatherList)
         {
             if(c.getHumidityPercentage()>80.00)
             {
@@ -122,11 +122,11 @@ public class Weather implements WeatherOperations
     @Override
     public void generateReport()
     {
-        ArrayList<City> sunnyCities=new ArrayList<>();
-        ArrayList<City> rainyCities=new ArrayList<>();
-        ArrayList<City> cloudyCities=new ArrayList<>();
-        ArrayList<City> otherCities=new ArrayList<>();
-        for (City c : cityWeatherList)
+        ArrayList<CityWeather> sunnyCities=new ArrayList<>();
+        ArrayList<CityWeather> rainyCities=new ArrayList<>();
+        ArrayList<CityWeather> cloudyCities=new ArrayList<>();
+        ArrayList<CityWeather> otherCities=new ArrayList<>();
+        for (CityWeather c : cityWeatherList)
         {
             if(c.getWeatherCondition().equalsIgnoreCase("sunny"))
             {
@@ -145,16 +145,35 @@ public class Weather implements WeatherOperations
                 otherCities.add(c);
             }
         }
-        System.out.println("Sunny cities : "+sunnyCities);
-        System.out.println("Rainy cities : "+rainyCities);
-        System.out.println("Cloudy cities : "+cloudyCities);
-        System.out.println("Others : "+otherCities);
+        System.out.println("\nSunny cities : ");
+        for(CityWeather c : sunnyCities)
+        {
+            System.out.print(c.getCityName()+" ");
+        }
+        System.out.println();
+        System.out.println("\nRainy cities : ");
+        for(CityWeather c : rainyCities)
+        {
+            System.out.print(c.getCityName()+" ");
+        }
+        System.out.println();
+        System.out.println("\nCloudy cities : ");
+        for(CityWeather c : cloudyCities)
+        {
+            System.out.print(c.getCityName()+" ");
+        }
+        System.out.println();
+        System.out.println("\nOthers : ");
+        for (CityWeather c : otherCities)
+        {
+            System.out.print(c.getCityName()+" ");
+        }
     }
 
     @Override
     public void displayAlert()
     {
-        for (City c : cityWeatherList)
+        for (CityWeather c : cityWeatherList)
         {
             if(c.getCurrentTemperature()>40)
             {
