@@ -32,11 +32,12 @@ public class Main
             System.out.println("2. Display city details by name");
             System.out.println("3. Find hottest city");
             System.out.println("4. Find coldest city");
-            System.out.println("5. Display cities with humidity > 80%");
-            System.out.println("6. Generate report (display cities by weather condition)");
-            System.out.println("7. Display Alerts");
-            System.out.println("8. Update City Weather");
-            System.out.println("9. Exit");
+            System.out.println("5. Display average current temperature");
+            System.out.println("6. Display cities with humidity > 80%");
+            System.out.println("7. Generate report (display cities by weather condition)");
+            System.out.println("8. Display Alerts");
+            System.out.println("9. Update City Weather");
+            System.out.println("10. Exit");
             System.out.print("Enter your choice: ");
             ch = sc.nextInt();
             sc.nextLine();
@@ -60,18 +61,22 @@ public class Main
                     break;
 
                 case 5:
-                    w.displayHumidCities();
+                    System.out.println("Average temperature : "+w.calculateAverageCurrentTemperature());
                     break;
 
                 case 6:
-                    w.generateReport();
+                    w.displayHumidCities();
                     break;
 
                 case 7:
-                    w.displayAlert();
+                    w.generateReport();
                     break;
 
                 case 8:
+                    w.displayAlert();
+                    break;
+
+                case 9:
                     System.out.print("Enter city name to update: ");
                     String updateCity = sc.nextLine();
                     System.out.print("Enter new temperature: ");
@@ -84,8 +89,8 @@ public class Main
                     w.updateWeather(updateCity, temp, humidity, condition);
                     break;
 
-                case 9:
-                    System.out.println("Exiting the system. Goodbye!");
+                case 10:
+                    System.out.println("Exiting the system...");
                     break;
 
                 default:
@@ -93,7 +98,7 @@ public class Main
                     break;
             }
 
-        } while (ch!= 9);
+        } while (ch!= 10);
 
         sc.close();
     }
