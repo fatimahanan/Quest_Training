@@ -1,11 +1,11 @@
-package com.quest.exception_handling;
+package com.quest.exception_handling.practice;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Test1
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws ArithmeticException, ArrayIndexOutOfBoundsException, NullPointerException, InputMismatchException
     {
         Scanner sc=new Scanner(System.in);
 
