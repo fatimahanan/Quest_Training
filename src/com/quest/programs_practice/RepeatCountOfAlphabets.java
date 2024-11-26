@@ -1,8 +1,8 @@
-package com.quest.practice_vars;
+package com.quest.programs_practice;
 
 import java.util.Scanner;
 
-public class RepeatCount
+public class RepeatCountOfAlphabets
 {
     public static void main(String[] args)
     {

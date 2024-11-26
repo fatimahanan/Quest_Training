@@ -1,6 +1,4 @@
-package com.quest.practice_vars;
-
-import static java.lang.System.out;
+package com.quest.programs_practice;
 
 public class ReverseRowMatrix
 {

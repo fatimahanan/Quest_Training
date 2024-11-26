@@ -6,7 +6,8 @@ public class FindMissingElementArray
 {
     public static void main(String[] args)
     {
-        int[] arr={11,5,0,2,11,11,13};
+//        int[] arr={10,20};
+        int[] arr={11,5,2,11,11,13};
         System.out.println("original array            : "+Arrays.toString(arr));
         Arrays.sort(arr);
         System.out.println("sorted array              : "+Arrays.toString(arr));
@@ -33,3 +34,8 @@ public class FindMissingElementArray
         }
     }
 }
+
+
+
+
+

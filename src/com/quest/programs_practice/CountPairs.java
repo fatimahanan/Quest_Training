@@ -1,6 +1,5 @@
-package com.quest.practice_vars;
+package com.quest.programs_practice;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CountPairs
