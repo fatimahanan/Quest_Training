@@ -9,7 +9,7 @@ public class FileHandling
 {
     public static void main(String[] args) throws FileNotFoundException
     {
-        File f=new File("stream.txt");
+        File f=new File("file2.txt");
         try
         {
            if(f.createNewFile())
@@ -46,12 +46,12 @@ public class FileHandling
         {
             e.printStackTrace();
         }
-        finally
-        {
-            if(f.delete())
-                System.out.println("File deleted successfully");
-            else
-                System.out.println("File could not be deleted since it does not exist");
-        }
+//        finally
+//        {
+//            if(f.delete())
+//                System.out.println("File deleted successfully");
+//            else
+//                System.out.println("File could not be deleted since it does not exist");
+//        }
     }
 }
