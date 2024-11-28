@@ -12,13 +12,36 @@ public class Subscriber implements Serializable
     private int balance;
     private ArrayList<CallHistory> callHistories;
 
-    public Subscriber(int id, String name, String phone, String planType, int balance) {
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.planType = planType;
-        this.balance = balance;
-        this.callHistories = new ArrayList<>();
+    public Subscriber(int id, String name, String phone, String planType, int balance)
+    {
+        try {
+            if (id <= 0) {
+                throw new IllegalArgumentException("ID must be a positive integer.");
+            }
+            if (name == null || name.isEmpty()) {
+                throw new IllegalArgumentException("Name cannot be null or empty.");
+            }
+            if (phone == null || phone.isEmpty()) {
+                throw new IllegalArgumentException("Phone number cannot be null or empty.");
+            }
+            if (planType == null || planType.isEmpty()) {
+                throw new IllegalArgumentException("Plan type cannot be null or empty.");
+            }
+            if (balance < 0) {
+                throw new IllegalArgumentException("Balance cannot be negative.");
+            }
+
+            this.id = id;
+            this.name = name;
+            this.phone = phone;
+            this.planType = planType;
+            this.balance = balance;
+            this.callHistories = new ArrayList<>();
+        }
+        catch (IllegalArgumentException e)
+        {
+            System.err.println("Exception : " + e.getMessage());
+        }
     }
 
     public int getId() {
