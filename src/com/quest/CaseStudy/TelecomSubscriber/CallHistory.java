@@ -1,4 +1,4 @@
-package com.quest.CaseStudy;
+package com.quest.CaseStudy.TelecomSubscriber;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

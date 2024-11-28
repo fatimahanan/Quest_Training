@@ -1,9 +1,8 @@
-package com.quest.CaseStudy;
+package com.quest.CaseStudy.TelecomSubscriber;
 
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 import static java.lang.System.out;
 

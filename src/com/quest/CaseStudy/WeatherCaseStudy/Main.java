@@ -1,4 +1,4 @@
-package com.quest.WeatherCaseStudy;
+package com.quest.CaseStudy.WeatherCaseStudy;
 
 import java.util.ArrayList;
 import java.util.Scanner;

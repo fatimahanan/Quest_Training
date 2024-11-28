@@ -1,4 +1,4 @@
-package com.quest.WeatherCaseStudy;
+package com.quest.CaseStudy.WeatherCaseStudy;
 
 public interface WeatherOperations
 {
