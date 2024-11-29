@@ -13,6 +13,7 @@ public class HashSetEg
         hs.add(3);
         hs.add(5);
         hs.add(4);
+        hs.add(4);
         System.out.println("\ndisplaying hashSet...");
         for(int i : hs)
             System.out.println(i);

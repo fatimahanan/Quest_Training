@@ -15,7 +15,7 @@ public class SubscriberOperationsImpl implements SubsciberOperations {
     }
 
     @Override
-    public void addSubscriber(int id, String name, String phone, String planType, int balance) {
+    public void addSubscriber(int id, String name, String phone, PlanType planType, int balance) {
         Subscriber subscriber = new Subscriber(id, name, phone, planType, balance);
         subscribers.add(subscriber);
     }
@@ -43,8 +43,9 @@ public class SubscriberOperationsImpl implements SubsciberOperations {
     }
 
     @Override
-    public void recordCallHistory(int id, String callType, int durationInMinutes, LocalDateTime timestamp) {
-        for (Subscriber subscriber : subscribers) {
+    public void recordCallHistory(int id, CallType callType, int durationInMinutes, LocalDateTime timestamp) {
+        for (Subscriber subscriber : subscribers)
+        {
             if (subscriber.getId() == id) {
                 CallHistory callHistory = new CallHistory(callType, durationInMinutes, timestamp);
                 subscriber.setCallHistories(callHistory);
@@ -95,38 +96,53 @@ public class SubscriberOperationsImpl implements SubsciberOperations {
         out.println("Error! Subscriber not found OR not a postpaid subscriber");
     }
 
-//    @Override
-//    public void saveData()
-//    {
-//        if (!file.exists())
-//        {
-//            try {
-//                file.createNewFile();
-//            } catch (IOException e) {
-//                out.println("Exception : " + e.getMessage());
-//            }
-//        }
-//
-//        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
-//            out.writeObject(subscribers);  // Serialize the subscribers list
-//            System.out.println("Data saved successfully.");
-//        } catch (IOException e) {
-//            out.println("Error saving data: " + e.getMessage());
-//        }
-//    }
-//    @Override
-//    public void loadData()
-//    {
-//        if (file.exists()) {
-//            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-//                subscribers = (ArrayList<Subscriber>) in.readObject();
-//                System.out.println("Data loaded successfully.");
-//            } catch (IOException | ClassNotFoundException e) {
-//                System.out.println("Error loading data: " + e.getMessage());
-//            }
-//        } else {
-//            System.out.println("Data file not found.");
-//        }
-//    }
+    @Override
+    public void removeSubscriber(int id)
+    {
+        for(Subscriber subscriber : subscribers)
+        {
+            if(subscriber.getId() == id)
+            {
+                subscribers.remove(subscriber);
+                System.out.println("Subscriber "+subscriber.getId()+" removed");
+                return;
+            }
+        }
+        System.out.println("Error! Subscriber not found!");
+    }
+
+    @Override
+    public void saveData()
+    {
+        if (!file.exists())
+        {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                out.println("Exception : " + e.getMessage());
+            }
+        }
+
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
+            out.writeObject(subscribers);  // Serialize the subscribers list
+            System.out.println("Data saved successfully.");
+        } catch (IOException e) {
+            out.println("Error saving data: " + e.getMessage());
+        }
+    }
+    @Override
+    public void loadData()
+    {
+        if (file.exists()) {
+            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
+                subscribers = (ArrayList<Subscriber>) in.readObject();
+                System.out.println("Data loaded successfully.");
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("Error loading data: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Data file not found.");
+        }
+    }
 }
 

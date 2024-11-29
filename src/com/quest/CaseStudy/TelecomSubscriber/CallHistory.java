@@ -10,8 +10,8 @@ public class CallHistory implements Serializable
     private LocalDateTime timestamp;
 
 
-    public CallHistory(String callType, int durationInMinutes, LocalDateTime timestamp) {
-        this.callType = callType;
+    public CallHistory(CallType callType, int durationInMinutes, LocalDateTime timestamp) {
+        this.callType = String.valueOf(CallType.callType);
         this.durationInMinutes = durationInMinutes;
         this.timestamp = timestamp;
     }
