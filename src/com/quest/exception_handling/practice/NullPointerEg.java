@@ -1,6 +1,6 @@
 package com.quest.exception_handling.practice;
 
-public class NullPointerEg
+public class NullPointerEg //unchecked exception
 {
     public static void main(String[] args)
     {

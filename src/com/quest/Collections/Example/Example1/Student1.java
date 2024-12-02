@@ -1,4 +1,4 @@
-package com.quest.Collections.Example;
+package com.quest.Collections.Example.Example1;
 
 public class Student1
 {

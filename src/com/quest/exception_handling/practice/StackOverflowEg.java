@@ -1,10 +1,10 @@
 package com.quest.exception_handling.practice;
 
-public class StackOverflowEg
+public class StackOverflowEg //error
 {
     public static void causeStackOverflow()
     {
-        causeStackOverflow();
+        causeStackOverflow();  //recursive
     }
     public static void main(String[] args)
     {

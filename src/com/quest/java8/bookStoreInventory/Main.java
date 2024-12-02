@@ -1,6 +1,8 @@
 package com.quest.java8.bookStoreInventory;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Main
 {
@@ -21,15 +23,31 @@ public class Main
                 System.out.println();
             }
 
-            System.out.println("Books above price 45 : ");
+//            System.out.println("Books above price 45 : ");
 //            for (Book book : b)
 //            {
 //                if(book.getPrice()>45)
 //                    System.out.println(book.getTitle());
 //            }
-            Arrays.stream(b)
-                    .filter(book->book.getPrice()>45)
-                    .forEach(book -> System.out.println(book.getTitle()));
+//            Arrays.stream(b)
+//                    .filter(book->book.getPrice()>45)
+//                    .forEach(book -> System.out.println(book.getTitle()));
+
+            System.out.println("Books greater than price 45 : ");
+            GreaterThan g=(books)->{
+                List<String> greaterThanLimit=new ArrayList<>();
+                for(Book book:books)
+                {
+                    if(book.getPrice()>45)
+                        greaterThanLimit.add(book.getTitle());
+                }
+                return greaterThanLimit;
+            };
+            List<String> booksAbove45 = g.comparePrice(b);
+            for(String book:booksAbove45)
+            {
+                System.out.println(book);
+            }
 
             b[0].stockCheck(5);
             b[1].stockCheck(15);

@@ -1,4 +1,4 @@
-package com.quest.exception_handling.oopException2;
+package com.quest.exception_handling.oopException2CustomExceptionEg;
 
 public class Employee
 {

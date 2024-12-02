@@ -1,4 +1,4 @@
-package com.quest.memory_allocation;
+package com.quest.StringClasses;
 
 public class StringTest
 {

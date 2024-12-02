@@ -1,4 +1,4 @@
-package com.quest.memory_allocation;
+package com.quest.StringClasses;
 
 public class StringClassTest
 {
@@ -15,7 +15,7 @@ public class StringClassTest
         check(s5,s6);
         System.out.println("**********************************************");
         System.out.println("Operations on StringBuilder");
-        System.out.println("\nAppending world with s3");
+        System.out.println("\nAppending strap with s3");
         s3.append("strap");
         System.out.println(s3);
         System.out.println("\nConverted s3 to string\n"+s3);
@@ -28,12 +28,12 @@ public class StringClassTest
 
         System.out.println("*********************************************");
         System.out.println("Operations on StringBuffer");
-        System.out.println("\nAppending world with s5");
-        s3.append("strap");
-        System.out.println(s3);
-        System.out.println("\nConverted s3 to string\n"+s5);
-        System.out.println("\nReversed s3\n"+s5.reverse());
-        System.out.println("\nReversed s3 back\n"+s5.reverse());
+        System.out.println("\nAppending strap with s5");
+        s5.append("strap");
+        System.out.println(s5);
+        System.out.println("\nConverted s5 to string\n"+s5);
+        System.out.println("\nReversed s5\n"+s5.reverse());
+        System.out.println("\nReversed s5 back\n"+s5.reverse());
         System.out.println("\nReplacing b with l in s3\n"+s5.replace(0,1,"l"));
         System.out.println("\nDeleting 0th index from s3\n"+s5.delete(0,1)); //s=tart to end-1
         System.out.println("\nInserting l at the beginning of s2\n"+s5.insert(0,"l"));

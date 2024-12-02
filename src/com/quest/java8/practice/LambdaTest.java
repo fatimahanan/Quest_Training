@@ -4,8 +4,8 @@ public class LambdaTest
 {
     public static void main(String[] args)
     {
-        MyFunctionalInterface fi = new MyFunctionalInterfaceImpl();
-        fi.perform("input 1");
+        MyFunctionalInterfaceImpl fi = new MyFunctionalInterfaceImpl();
+        System.out.println(fi.perform("input 1"));
 
         MyFunctionalInterface fi2 = new MyFunctionalInterface()
         {
@@ -16,10 +16,13 @@ public class LambdaTest
             }
         };
 
+        System.out.println(fi2.perform("input 2"));
+
         MyFunctionalInterface fi3 = (s1) -> {
             return "performing"+s1;
         };
 
         String output=fi3.perform("input2");
+        System.out.println(output);
     }
 }

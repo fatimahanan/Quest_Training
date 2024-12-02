@@ -41,7 +41,7 @@ public class Main
             System.out.println("Checked exception has occurred."+e.getLocalizedMessage());
         }
         finally {
-            System.exit(0);
+            System.exit(0); //not a good practice
             System.out.println("done.");
         }
     }

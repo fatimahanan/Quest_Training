@@ -1,6 +1,6 @@
 package com.quest.exception_handling.practice;
 
-public class OutOfMemoryEg
+public class OutOfMemoryEg //error
 {
     public static void main(String[] args)
     {
@@ -10,7 +10,7 @@ public class OutOfMemoryEg
         }
         catch(OutOfMemoryError e)
         {
-            System.out.println("exception has occurred, out of memory!");
+            System.out.println("error has occurred, out of memory!");
             e.printStackTrace();
         }
 

@@ -12,9 +12,9 @@ public class LocalDateEg
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy HH:mm:ss");
 
-        String fomattedDateTime = currentDateTime.format(formatter);
+        String formattedDateTime = currentDateTime.format(formatter);
 
-        System.out.println("formatted dateTime : "+fomattedDateTime);
+        System.out.println("formatted dateTime : "+formattedDateTime);
 
         LocalDateTime someOtherDate = LocalDateTime.of(2023,12,4,11,35,34);
         System.out.println("someOtherDate : "+someOtherDate);
@@ -23,6 +23,7 @@ public class LocalDateEg
         System.out.println("after : "+after);
 
         LocalDateTime added = currentDateTime.plus(2, ChronoUnit.YEARS);
-        System.out.println("added 2 years : "+added);
+        String addedDate=added.format(formatter);
+        System.out.println("added 2 years : "+addedDate);
     }
 }

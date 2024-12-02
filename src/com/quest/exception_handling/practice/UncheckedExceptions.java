@@ -3,7 +3,7 @@ package com.quest.exception_handling.practice;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Test1
+public class UncheckedExceptions
 {
     public static void main(String[] args) throws ArithmeticException, ArrayIndexOutOfBoundsException, NullPointerException, InputMismatchException
     {
@@ -28,7 +28,7 @@ public class Test1
         catch (InputMismatchException e)
         {
             e.printStackTrace();
-            System.out.println("InputMismatchException....inavlid input, enter integer\n");
+            System.out.println("InputMismatchException....invalid input, enter integer\n");
         }
         finally
         {

@@ -31,7 +31,7 @@ public class Manager extends Employee
 
     public void jobDescription(String jd)
     {
-        if(jd==null || jd.equals(""))
+        if(jd==null || jd.isEmpty())
         {
             throw new NullPointerException("Job description cannot be null");
         }

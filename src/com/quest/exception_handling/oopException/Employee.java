@@ -58,7 +58,7 @@ public class Employee
     public void displayDetails() throws IOException
     {
         System.out.println();
-        if(this.salary>400000)
+        if(this.salary>400000)   //unchecked
             throw new IOException(this.name+"'s salary exceeds 400000, invalid.");
         System.out.println("ID :"+id);
         System.out.println("Name: " + name);
