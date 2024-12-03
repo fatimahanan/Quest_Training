@@ -79,7 +79,8 @@ public class Track
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", artist='" + artist + '\'' +
-                ", duration=" + duration +
+                ", duration=" + duration + '\'' +
+                ", rating=" + rating +
                 ']';
     }
 }

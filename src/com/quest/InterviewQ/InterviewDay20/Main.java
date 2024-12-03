@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class Main
 {
-    public static void main(String[] args) throws DuplicateTrackException {
+    public static void main(String[] args) throws DuplicateTrackException
+    {
         Scanner sc = new Scanner(System.in);
         HashMap<String,User> users = new HashMap<>();
         User newUser=null;
@@ -24,6 +25,10 @@ public class Main
             Playlist countryMusic = newUser.getPlaylistByName("country music");
             countryMusic.addTrack(new Track(4, "Take me home, country roads", "John Dennver", 5.10));
             newUser.displayAllPlaylists();
+            goldenHits.sortTracksBy("duration");
+            System.out.println(goldenHits);
+            goldenHits.rateTrack(1,5);
+            System.out.println(goldenHits);
         }
         catch (DuplicateTrackException e)
         {
@@ -52,7 +57,8 @@ public class Main
             System.out.println("13. Display all tracks");
             System.out.println("14. Sort tracks by duration/title");
             System.out.println("15. Shuffle tracks");
-            System.out.println("16. Exit");
+            System.out.println("16. Select user");
+            System.out.println("17. Exit");
             System.out.println("\nEnter your choice : ");
             int ch=sc.nextInt();
             switch(ch)
@@ -66,6 +72,7 @@ public class Main
                         newUser=new User(username);
                         users.put(username,newUser);
                         System.out.println("User created successfully...");
+                        newUser=users.get(username);
                     }
                     else
                     {
@@ -126,6 +133,7 @@ public class Main
                     }
                     else
                     {
+                        System.out.println("Playlist of "+newUser.getUsername()+" : ");
                         newUser.displayAllPlaylists();
                     }
                     break;
@@ -194,6 +202,7 @@ public class Main
                     case 10: //add new track
                         System.out.print("Enter playlist name to add track for : ");
                         String playlistForAdd = sc.nextLine();
+                        sc.nextLine();
                         Playlist addTrackPlaylist = newUser.getPlaylistByName(playlistForAdd);
                         if (addTrackPlaylist != null)
                         {
@@ -206,6 +215,7 @@ public class Main
                             String trackArtist = sc.nextLine();
                             System.out.print("Enter track duration: ");
                             double trackDuration = sc.nextDouble();
+                            sc.nextLine();
                             addTrackPlaylist.addTrack(new Track(trackId, trackTitle, trackArtist, trackDuration));
                         }
                         break;
@@ -240,6 +250,7 @@ public class Main
                     case 14: //sort track
                         System.out.print("Enter either 'duration' or 'title' to sort by: ");
                         String sortBy = sc.nextLine();
+                        sc.nextLine();
                         for (Playlist playlistSort : newUser.playlistMap.values()) {
                             playlistSort.sortTracksBy(sortBy);
                         }
@@ -256,20 +267,23 @@ public class Main
                         }
                         break;
 
-                    case 16:
+                    case 16: //select user
                         System.out.print("Enter username to select: ");
                         String selectedUsername = sc.nextLine();
                         if (users.containsKey(selectedUsername))
                         {
                             newUser = users.get(selectedUsername);
                             System.out.println("User " + selectedUsername + " selected.");
-                        } else {
+                        }
+                        else
+                        {
                             System.out.println("User not found.");
                         }
+                        break;
 
                     case 17: //exit
                         System.out.print("exiting...");
-                        break;
+                        return;
             }
         }
 
