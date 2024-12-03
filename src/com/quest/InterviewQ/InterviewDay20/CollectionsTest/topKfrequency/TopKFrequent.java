@@ -28,17 +28,17 @@ public class TopKFrequent
     public static ArrayList<String> findTopKFrequent(ArrayList<String> list, int k)
     {
         HashMap<String, Integer> map = new HashMap<>();
-        for(String s:list)
+        for(String s:list)   //developing string->freq map
         {
             map.put(s,map.getOrDefault(s,0)+1);
         }
 
         //put hashmap into list to sort
         ArrayList<Map.Entry<String,Integer>> sortedList=new ArrayList<>(map.entrySet());
-        sortedList.sort(new SortByFreqComparator());
+        sortedList.sort(new SortByFreqComparator());  //sorting using comparator either by freq or lexicographically if freq is equal
 
         ArrayList<String> topKString=new ArrayList<>();
-        for(int i=0;i<k;i++)
+        for(int i=0;i<k;i++)    //add k names of elements to result list
         {
             topKString.add(sortedList.get(i).getKey());
         }
