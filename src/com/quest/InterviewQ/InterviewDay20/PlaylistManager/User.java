@@ -1,6 +1,7 @@
 package com.quest.InterviewQ.InterviewDay20.PlaylistManager;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ public class User implements UserOperations
     public User(String username) {
         this.username = username;
         this.playlistMap = new HashMap<>();
+        this.favouriteTracks = new HashSet<>();
     }
 
     public String getUsername() {
@@ -23,13 +25,13 @@ public class User implements UserOperations
         this.username = username;
     }
 
-
     @Override
     public void createNewPlaylist(String playlistName)
     {
         if(!playlistMap.containsKey(playlistName))
         {
-            playlistMap.put(playlistName, new Playlist(playlistName));
+            Playlist newPlaylist = new Playlist(playlistName);
+            playlistMap.put(playlistName, newPlaylist);
             System.out.println("Playlist created: " + playlistName+"\n");
         }
         else
@@ -54,14 +56,13 @@ public class User implements UserOperations
     @Override
     public Playlist getPlaylistByName(String playlistName)
     {
-        Playlist retrievedPlaylist=null;
         if(playlistMap.containsKey(playlistName))
         {
-            retrievedPlaylist = playlistMap.get(playlistName);
+            System.out.println("Playlist "+playlistName+" exists...\n");
+            return playlistMap.get(playlistName);
         }
         else
             return null;
-        return retrievedPlaylist;
     }
 
     @Override
@@ -90,7 +91,7 @@ public class User implements UserOperations
 
     @Override
     public void unmarkFavorite(Track track) {
-        favouriteTracks.add(track);
+        favouriteTracks.remove(track);
         System.out.println("Track added to favourites...");
     }
 
@@ -107,6 +108,19 @@ public class User implements UserOperations
             {
                 System.out.println(track);
             }
+        }
+    }
+
+    public void displayTracksOfPlaylist(String playlistName)
+    {
+        Playlist playlist = getPlaylistByName(playlistName);
+        if(playlist!=null)
+        {
+            playlist.displayAllTracks();
+        }
+        else
+        {
+            System.out.println("Playlist does not exist...\n");
         }
     }
 
