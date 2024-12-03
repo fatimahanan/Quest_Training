@@ -1,4 +1,4 @@
-package com.quest.InterviewQ.InterviewDay20.part2.topKfrequency;
+package com.quest.InterviewQ.InterviewDay20.CollectionsTest.topKfrequency;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.quest.InterviewQ.InterviewDay20.part2;
+package com.quest.InterviewQ.InterviewDay20.CollectionsTest;
 
 import java.util.*;
 

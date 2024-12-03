@@ -1,4 +1,4 @@
-package com.quest.InterviewQ.InterviewDay20;
+package com.quest.InterviewQ.InterviewDay20.PlaylistManager;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -8,7 +8,7 @@ public class Main
     public static void main(String[] args) throws DuplicateTrackException
     {
         Scanner sc = new Scanner(System.in);
-        HashMap<String,User> users = new HashMap<>();
+        HashMap<String, User> users = new HashMap<>();
         User newUser=null;
         try
         {

@@ -1,4 +1,4 @@
-package com.quest.InterviewQ.InterviewDay20;
+package com.quest.InterviewQ.InterviewDay20.PlaylistManager;
 
 public interface UserOperations
 {
