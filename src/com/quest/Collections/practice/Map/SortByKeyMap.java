@@ -15,6 +15,5 @@ public class SortByKeyMap
         {
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
-
     }
 }

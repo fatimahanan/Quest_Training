@@ -1,4 +1,4 @@
-package com.quest.oops.interviewDay10;
+package com.quest.InterviewQ.interviewDay10;
 
 public class EquityStockAnalyzer extends StockAnalyzer
 {
