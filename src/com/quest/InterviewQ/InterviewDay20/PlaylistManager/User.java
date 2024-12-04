@@ -92,7 +92,7 @@ public class User implements UserOperations
     @Override
     public void unmarkFavorite(Track track) {
         favouriteTracks.remove(track);
-        System.out.println("Track added to favourites...");
+        System.out.println("Track removed from favourites...");
     }
 
     @Override

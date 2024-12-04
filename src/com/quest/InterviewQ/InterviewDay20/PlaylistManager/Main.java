@@ -43,10 +43,10 @@ public class Main
 
         while(true)
         {
-            System.out.println("1.  Create user");
+            System.out.println("\n1.  Create user");
             System.out.println("2.  Create playlist");
             System.out.println("3.  Delete playlist");
-            System.out.println("4.  Get playlist by name");
+            System.out.println("4.  Get playlist by name"); //
             System.out.println("5.  Display all playlists");
             System.out.println("6.  Rate tracks of a playlist");
             System.out.println("7.  Mark favourite track");
@@ -58,7 +58,7 @@ public class Main
             System.out.println("13. Display all tracks");
             System.out.println("14. Sort tracks by duration/title");
             System.out.println("15. Shuffle tracks");
-            System.out.println("16. Select user");
+            System.out.println("16. Select user an display all playlists");
             System.out.println("17. Exit");
             System.out.println("\nEnter your choice : ");
             int ch=sc.nextInt();
@@ -88,8 +88,8 @@ public class Main
                     else
                     {
                         System.out.println("Enter playlist name : ");
-                        String createplaylistName = sc.nextLine();
                         sc.nextLine();
+                        String createplaylistName = sc.nextLine();
                         newUser.createNewPlaylist(createplaylistName);
                     }
                     break;
@@ -102,6 +102,7 @@ public class Main
                     else
                     {
                         System.out.println("Enter playlist name to delete : ");
+                        sc.nextLine();
                         String deleteplaylistName = sc.nextLine();
                         newUser.deletePlaylist(deleteplaylistName);
                     }
@@ -165,43 +166,61 @@ public class Main
                         break;
                     }
                     case 7: //mark favourite
-                        System.out.print("Enter playlist name: ");
-                        String playlistForFavorite = sc.nextLine();
-                        sc.nextLine();
-                        Playlist favoritePlaylist = newUser.getPlaylistByName(playlistForFavorite);
-                        if (favoritePlaylist != null)
+                        if(newUser==null)
                         {
-                            System.out.print("Enter track ID to mark as favorite: ");
-                            int favoriteTrackId = sc.nextInt();
-                            for (Track track : favoritePlaylist.getTracks())
-                            {
-                                if (track.getId() == favoriteTrackId)
-                                {
-                                    newUser.markFavorite(track);
-                                    break;
+                            System.out.println("user not found, cannot mark favourite");
+                        }
+                        else
+                        {
+                            System.out.print("Enter playlist name: ");
+                            sc.nextLine();
+                            String playlistForFavorite = sc.nextLine();
+                            Playlist favoritePlaylist = newUser.getPlaylistByName(playlistForFavorite);
+                            boolean found=false;
+                            if (favoritePlaylist != null) {
+                                System.out.print("Enter track ID to mark as favorite: ");
+                                int favoriteTrackId = sc.nextInt();
+                                for (Track track : favoritePlaylist.getTracks()) {
+                                    if (track.getId() == favoriteTrackId) {
+                                        found=true;
+                                        newUser.markFavorite(track);
+                                        break;
+                                    }
                                 }
+                                if(!found)
+                                  System.out.println("Track not found...");
                             }
-                            System.out.println("Track not found...");
                         }
                         break;
 
                     case 8: //unmark fav
-                        System.out.print("Enter playlist name: ");
-                        String playlistForUnmark = sc.nextLine();
-                        sc.nextLine();
-                        Playlist unmarkFavoritePlaylist = newUser.getPlaylistByName(playlistForUnmark);
-                        if (unmarkFavoritePlaylist != null)
+                        if(newUser==null)
                         {
-                            System.out.print("Enter track ID to unmark as favorite: ");
-                            int unmarkTrackId = sc.nextInt();
-                            for (Track track : unmarkFavoritePlaylist.getTracks())
+                            System.out.println("User not found, cannot unmark favourite...");
+                        }
+                        else
+                        {
+                            System.out.print("Enter playlist name: ");
+                            sc.nextLine();
+                            String playlistForUnmark = sc.nextLine();
+                            Playlist unmarkFavoritePlaylist = newUser.getPlaylistByName(playlistForUnmark);
+                            boolean found=false;
+                            if (unmarkFavoritePlaylist != null)
                             {
-                                if (track.getId() == unmarkTrackId) {
-                                    newUser.unmarkFavorite(track);
-                                    break;
+                                System.out.print("Enter track ID to unmark as favorite: ");
+                                int unmarkTrackId = sc.nextInt();
+                                for (Track track : unmarkFavoritePlaylist.getTracks())
+                                {
+                                    if (track.getId() == unmarkTrackId)
+                                    {
+                                        found=true;
+                                        newUser.unmarkFavorite(track);
+                                        break;
+                                    }
                                 }
+                                if(!found)
+                                    System.out.println("Track not found..");
                             }
-                            System.out.println("Track not found...");
                         }
                         break;
 
@@ -220,8 +239,8 @@ public class Main
                         else
                         {
                             System.out.print("Enter playlist name to add track for : ");
-                            String playlistForAdd = sc.nextLine();
                             sc.nextLine();
+                            String playlistForAdd = sc.nextLine();
                             Playlist addTrackPlaylist = newUser.getPlaylistByName(playlistForAdd);
                             if (addTrackPlaylist != null)
                             {
@@ -252,6 +271,7 @@ public class Main
                         else
                         {
                             System.out.print("Enter playlist name to remove track: ");
+                            sc.nextLine();
                             String removeTrackPlaylistName = sc.nextLine();
                             Playlist removeTrackPlaylist = newUser.getPlaylistByName(removeTrackPlaylistName);
                             if (removeTrackPlaylist != null)
@@ -294,7 +314,8 @@ public class Main
                             System.out.print("Enter playlist name : ");
                             sc.nextLine();
                             String playlistNameToFind = sc.nextLine();
-                            Playlist playlistToDisplay=newUser.getPlaylistByName(playlistNameToFind);
+                            Playlist playlistToDisplay=newUser.playlistMap.get(playlistNameToFind);
+                            System.out.println("Playlist : "+playlistNameToFind);
                             newUser.displayTracksOfPlaylist(playlistNameToFind);
                         }
                         break;
@@ -304,10 +325,9 @@ public class Main
                             System.out.println("User not found, cannot search for track...");
                         else
                         {
-                            System.out.print("Enter either 'duration' or 'title' to sort by: ");
+                            System.out.print("Enter either 'duration' or 'title' to sort by : ");
                             sc.nextLine();
                             String sortBy = sc.nextLine();
-                            sc.nextLine();
                             for (Playlist playlistSort : newUser.playlistMap.values()) {
                                 playlistSort.sortTracksBy(sortBy);
                             }
@@ -327,6 +347,7 @@ public class Main
                             if (shufflePlaylist != null) {
                                 shufflePlaylist.shuffleTracks();
                                 System.out.println("Tracks shuffled in playlist: " + shufflePlaylistName);
+                                shufflePlaylist.displayAllTracks();
                             }
                         }
                         break;

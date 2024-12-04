@@ -9,7 +9,7 @@ public class FileHandling
 {
     public static void main(String[] args) throws FileNotFoundException
     {
-        File f=new File("file2.txt");
+        File f=new File("file.txt");
         try
         {
            if(f.createNewFile())
