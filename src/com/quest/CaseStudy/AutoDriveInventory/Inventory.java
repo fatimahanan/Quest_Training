@@ -59,6 +59,7 @@ public class Inventory
             while (iterator.hasNext())
             {
                 Vehicle v = iterator.next();
+                System.out.println(v);
             }
         }
     }
