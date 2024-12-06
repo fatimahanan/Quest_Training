@@ -3,6 +3,9 @@ package com.quest.CaseStudy.AutoDriveInventory;
 import java.time.LocalDate;
 import java.util.*;
 
+import static com.quest.CaseStudy.AutoDriveInventory.Serialization.loadData;
+import static com.quest.CaseStudy.AutoDriveInventory.Serialization.saveData;
+
 public class Main
 {
     public static void main(String[] args) {
@@ -65,5 +68,23 @@ public class Main
                 .forEach(purchase ->
                         System.out.println(purchase.getVehicle() + " | Purchased at: " + purchase.getPurchaseDateTime()));
 
+        saveData(customerVehicleMap);
+        System.out.println("\nSerialized...");
+
+        // Deserialize and print the data
+        System.out.println("\nDeserializing...");
+        Map<Customer, Set<Vehicle>> deserializedData = loadData();
+
+        if (deserializedData != null)
+        {
+            deserializedData.forEach((customer, vehicles) ->
+            {
+                System.out.println("Customer: " + customer.getName());
+                vehicles.forEach(vehicle ->
+                {
+                    System.out.println("Vehicle: " + vehicle.getBrand() + " " + vehicle.getModel() + " | Price: " + vehicle.getPrice());
+                });
+            });
+        }
     }
 }

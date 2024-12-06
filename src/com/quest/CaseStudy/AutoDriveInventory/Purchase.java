@@ -1,9 +1,11 @@
 package com.quest.CaseStudy.AutoDriveInventory;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Purchase
+public class Purchase implements Serializable
 {
+    private static final long serialVersionUID = 1L;
     private Vehicle vehicle;
     private LocalDateTime purchaseDateTime;
 

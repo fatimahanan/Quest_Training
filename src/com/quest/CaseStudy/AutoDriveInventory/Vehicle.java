@@ -1,10 +1,14 @@
 package com.quest.CaseStudy.AutoDriveInventory;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Vehicle implements Cloneable
+public class Vehicle implements Cloneable, Serializable
 {
+    @Serial
+    private static final long serialVersionUID = 1L;
     private String vehicleId;
     private String brand;
     private String model;
