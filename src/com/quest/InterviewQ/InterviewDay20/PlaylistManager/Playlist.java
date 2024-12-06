@@ -38,6 +38,7 @@ public class Playlist implements PlaylistOperations
                 '}';
     }
 
+    @Override
     public void addTrack(Track track) throws DuplicateTrackException
     {
         if(tracks.contains(track))
@@ -47,7 +48,7 @@ public class Playlist implements PlaylistOperations
     }
 
     @Override
-    public void removeTrack(Track track) throws NoSuchElementException
+    public void removeTrack(Track track)
     {
         if(!tracks.contains(track))
             throw new NoSuchElementException("Exception! Track does not exist...");

@@ -1,5 +1,6 @@
 package com.quest.InterviewQ.InterviewDay20.PlaylistManager;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -21,6 +22,7 @@ public class Main
             Playlist goldenHits = newUser.getPlaylistByName("golden hits");
             goldenHits.addTrack(new Track(1, "Dancing Queen", "ABBA", 4.20));
             goldenHits.addTrack(new Track(2, "Hey Jude", "The Beatles", 3.50));
+            goldenHits.addTrack(new Track(3,"Yesterday","The Beatles",3.27));
             Playlist partySongs = newUser.getPlaylistByName("party songs");
             partySongs.addTrack(new Track(3, "We Found Love", "Rihanna", 3));
             Playlist countryMusic = newUser.getPlaylistByName("country music");
@@ -30,6 +32,7 @@ public class Main
             System.out.println(goldenHits);
             goldenHits.rateTrack(1,5);
             System.out.println(goldenHits);
+            goldenHits.searchTrack("The Beatles");
         }
         catch (DuplicateTrackException e)
         {
@@ -115,10 +118,10 @@ public class Main
                     }
                     else
                     {
-                        sc.nextLine();
                         System.out.println("Enter playlist name to find : ");
-                        String findplaylistName = sc.nextLine();
-                        Playlist foundPlaylist=newUser.getPlaylistByName(findplaylistName);
+                        sc.nextLine();
+                        String findPlaylistName = sc.nextLine();
+                        Playlist foundPlaylist=newUser.getPlaylistByName(findPlaylistName);
                         if(foundPlaylist!=null)
                             foundPlaylist.displayAllTracks();
                         else
@@ -298,11 +301,12 @@ public class Main
                         {
                             System.out.print("Enter track name or artist to search: ");
                             sc.nextLine();
-                            String searchKeyword = sc.nextLine();
-                            for (Playlist playlistSearch : newUser.playlistMap.values())
-                            {
-                                playlistSearch.searchTrack(searchKeyword);
-                            }
+                            String searchKeyword1 = sc.nextLine();  // Get the search keyword
+                            System.out.println("Enter playlist name in which track is present: ");
+                            String toSearchInPlaylist = sc.nextLine();  // Get the playlist name
+                            Playlist existsInPlaylist=newUser.playlistMap.get(toSearchInPlaylist);
+                            ArrayList<Track> containsSearchElement=existsInPlaylist.searchTrack(searchKeyword1);
+                            containsSearchElement.forEach(System.out::println);
                         }
                         break;
 
