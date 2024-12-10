@@ -193,54 +193,8 @@ public class Main {
             return new ServiceBooking<>(randomServiceId, randomCustomer, randomServiceDate, randomServiceType, randomCost);
         };
 
-        // Example: Generate a random service booking
         System.out.println("\nGenerated Random Service Booking: ");
         System.out.println(randomServiceBooking.get());
-
-//
-//        // 2. Consumer: Print a detailed invoice for a customer
-//        Consumer<NormalCustomer> printInvoice = customer -> {
-//            double totalCost = customer.getServiceBookings().stream().mapToDouble(ServiceBooking::getCost).sum();
-//            System.out.println("Invoice for " + customer.getName() + ":");
-//            customer.getServiceBookings().forEach(booking -> {
-//                System.out.println("Service ID: " + booking.getBookingId() + ", Type: " + booking.getServiceType() + ", Cost: " + booking.getCost());
-//            });
-//            System.out.println("Total Cost: " + totalCost);
-//        };
-//
-//        // Example: Print invoice for Rajesh
-//        System.out.println("\nDetailed Invoice for Rajesh:");
-//        printInvoice.accept(nc1);
-//
-//        // 3. Function: Apply 15% discount for customers with more than 3 services
-//        Function<Customer, Double> applyDiscount = customer -> {
-//            long serviceCount = customer.getServiceBookings().size();
-//            double totalCost = customer.getServiceBookings().stream().mapToDouble(ServiceBooking::getCost).sum();
-//            if (serviceCount > 3) {
-//                return totalCost * 0.85;  // Apply 15% discount
-//            }
-//            return totalCost;
-//        };
-
-//        // Example: Apply discount for Hanan
-//        System.out.println("\nTotal Cost for Hanan (after discount if applicable): " + applyDiscount.apply(pc1));
-//
-//        // 4. Supplier: Generate a random service booking for testing purposes
-//        Supplier<ServiceBooking<?>> randomServiceBooking = () -> {
-//            Random random = new Random();
-//            String randomServiceId = "b" + random.nextInt(100);
-//            Customer randomCustomer = random.nextBoolean() ? pc1 : nc1;
-//            LocalDateTime randomServiceDate = LocalDateTime.now().plusDays(random.nextInt(30));  // Random date within the next 30 days
-//            String[] serviceTypes = {"oil change", "brake inspection", "battery check", "wheel alignment"};
-//            String randomServiceType = serviceTypes[random.nextInt(serviceTypes.length)];
-//            double randomCost = 100 + random.nextDouble() * 500;  // Random cost between 100 and 600
-//            return new ServiceBooking<>(randomServiceId, randomCustomer, randomServiceDate, randomServiceType, randomCost);
-//        };
-//
-//        // Example: Generate a random service booking
-//        System.out.println("\nGenerated Random Service Booking: ");
-//        System.out.println(randomServiceBooking.get());
-    }
 }
 
 
