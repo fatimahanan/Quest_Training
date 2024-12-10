@@ -132,7 +132,7 @@ public class Main {
         // Get and display all service bookings
         System.out.print("\nAll Service Bookings:");
         serviceManagement.getAllServiceBookings().forEach((customer, bookings) -> {
-            System.out.println("\n"+customer.getName() + "'s service bookings :");
+            System.out.println("\n" + customer.getName() + "'s service bookings :");
             bookings.forEach(System.out::println);
         });
 
@@ -157,7 +157,7 @@ public class Main {
             bookings.stream().filter(serviceInNextWeek).forEach(System.out::println);
         });
 
-        List<Customer> customers=new ArrayList<>(Arrays.asList(pc1,pc2,nc1,nc2));
+        List<Customer> customers = new ArrayList<>(Arrays.asList(pc1, pc2, nc1, nc2));
         Consumer<Customer> printInvoice = customer -> {
             double totalCost = customer.getServiceBookings().stream().mapToDouble(ServiceBooking::getCost).sum();
             System.out.println("\nInvoice for " + customer.getName() + ":");
@@ -171,15 +171,15 @@ public class Main {
 //        printInvoice.accept(pc1);
 
         //15% discount for cuatomers more than 1 service
-        Function<Customer,Double> applyDiscount=customer -> {
-            int serviceCount=customer.getServiceBookings().size();
-            double totalCost=customer.getServiceBookings().stream().mapToDouble(ServiceBooking::getCost).sum();
-            if(serviceCount>1)
-                return 0.85*totalCost;
+        Function<Customer, Double> applyDiscount = customer -> {
+            int serviceCount = customer.getServiceBookings().size();
+            double totalCost = customer.getServiceBookings().stream().mapToDouble(ServiceBooking::getCost).sum();
+            if (serviceCount > 1)
+                return 0.85 * totalCost;
             return totalCost;
         };
-        System.out.println("\ndiscounted price for hanan : "+applyDiscount.apply(pc1));
-        System.out.println("\ndiscounted price for rajesh : "+applyDiscount.apply(nc1));
+        System.out.println("\ndiscounted price for hanan : " + applyDiscount.apply(pc1));
+        System.out.println("\ndiscounted price for rajesh : " + applyDiscount.apply(nc1));
 
         //generate random booking
         Supplier<ServiceBooking<?>> randomServiceBooking = () -> {
@@ -195,6 +195,7 @@ public class Main {
 
         System.out.println("\nGenerated Random Service Booking: ");
         System.out.println(randomServiceBooking.get());
+    }
 }
 
 
