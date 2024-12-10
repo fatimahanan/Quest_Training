@@ -28,6 +28,8 @@ public class ThreadEg1 extends Thread
                 }
             }
         };
+        t1.setPriority(7); //odd - higher priority
+        t2.setPriority(2); //even - smaller number less priority (in this ide)
         t1.start();
         t2.start();
     }

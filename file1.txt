@@ -1,1 +1,3 @@
-passed
+file 1 content
+line1
+line2

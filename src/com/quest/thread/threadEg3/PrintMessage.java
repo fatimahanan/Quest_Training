@@ -4,7 +4,8 @@ public class PrintMessage implements Runnable
 {
     private String message;
 
-    public PrintMessage(String message) {
+    public PrintMessage(String message)
+    {
         this.message = message;
     }
 

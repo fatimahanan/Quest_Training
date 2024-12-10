@@ -2,7 +2,7 @@ package com.quest.thread;
 
 public class ThreadEg2 extends Thread
 {
-    static int count=1;
+    static int num=1;
     public static void main(String[] args)
     {
         ThreadEg2 t1 = new ThreadEg2()
@@ -10,12 +10,12 @@ public class ThreadEg2 extends Thread
             @Override
             public void run()
             {
-                while (count<=10)
+                while (num<=10)
                 {
-                    if(count%2!=0)
+                    if(num%2!=0)
                     {
-                        System.out.println(count);
-                        count++;
+                        System.out.println(num);
+                        num++;
                     }
                 }
             }
@@ -25,12 +25,12 @@ public class ThreadEg2 extends Thread
             @Override
             public void run()
             {
-                while (count<=10)
+                while (num<=10)
                 {
-                    if(count%2==0)
+                    if(num%2==0)
                     {
-                        System.out.println(count);
-                        count++;
+                        System.out.println(num);
+                        num++;
                     }
                 }
             }

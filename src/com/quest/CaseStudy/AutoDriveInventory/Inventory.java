@@ -13,6 +13,7 @@ public class Inventory
     public void addVehicle(Vehicle v)
     {
         vehicleSet.add(v);
+        System.out.println("Added vehicle "+v.getBrand()+" "+v.getModel()+" successfully");
     }
 
     public void removeVehicle(Vehicle v)
@@ -37,10 +38,11 @@ public class Inventory
         if(vehicle!=null)
         {
             Vehicle clonedVehicle=vehicle.clone();
-            removeVehicle(vehicle);
-            c.addPurchasedVehicle(clonedVehicle);
-            customerMap.putIfAbsent(c, new HashSet<>());
+            removeVehicle(vehicle); //remove vehicle from inventory after cloning vehicle
+            c.addPurchasedVehicle(clonedVehicle); //add cloned vehicle to the customer's purchased vehicle list
+            customerMap.putIfAbsent(c, new HashSet<>()); //if customer not present in the map then add set to map
             customerMap.get(c).add(clonedVehicle);
+            System.out.println("Purchase of vehicle successful!");
         }
         else
             throw new VehicleNotFoundException("Vehicle "+vehicleId+" not found");

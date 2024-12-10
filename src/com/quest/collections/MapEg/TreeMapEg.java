@@ -14,6 +14,9 @@ public class TreeMapEg
         tm.put(5,"orange");
         tm.put(7,"blueberry");
         tm.put(5,"orange"); //no duplicates
+        tm.put(8,null);
+        tm.put(9,null);
+        tm.put(10,null);
 
         TreeMapEg.displayAll(tm);
 

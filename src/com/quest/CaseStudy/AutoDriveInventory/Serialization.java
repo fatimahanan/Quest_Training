@@ -23,7 +23,8 @@ public class Serialization
     {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("salesData.ser")))
         {
-            return (Map<Customer, Set<Vehicle>>) in.readObject();
+            Map<Customer,Set<Vehicle>> loadedData=(Map<Customer,Set<Vehicle>>)in.readObject();
+            return loadedData;
         }
         catch (IOException | ClassNotFoundException e)
         {
