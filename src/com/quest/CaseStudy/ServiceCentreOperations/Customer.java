@@ -1,17 +1,22 @@
 package com.quest.CaseStudy.ServiceCentreOperations;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Customer
 {
     private String customerId;
     private String name;
     private String email;
     private Vehicle vehicle;
+    private List<ServiceBooking> serviceBookings;
 
     public Customer(String customerId, String name, String email, Vehicle vehicle) {
         this.customerId = customerId;
         this.name = name;
         this.email = email;
         this.vehicle = vehicle;
+        this.serviceBookings=new ArrayList<>();
     }
 
     public String getCustomerId() {
@@ -53,4 +58,13 @@ public class Customer
                 ", email='" + email + '\'' +
                 ", vehicle=" + vehicle;
     }
+
+    public void addServiceBooking(ServiceBooking booking) {
+        serviceBookings.add(booking); // Add a booking for the customer
+    }
+
+    public List<ServiceBooking> getServiceBookings() {
+        return serviceBookings; // Return the list of bookings
+    }
+
 }

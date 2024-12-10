@@ -99,8 +99,13 @@ public class Main {
 
         //create service booking
         ServiceBooking<PlatinumCustomer> b1 = new ServiceBooking<>("b1", pc1, LocalDateTime.of(2024, 12, 15, 10, 30), "oil change", 100);
-        ServiceBooking<PlatinumCustomer> b3 = new ServiceBooking<>("b3", pc1, LocalDateTime.of(2024, 12, 15, 10, 35), "wheel alignment", 500);
-        ServiceBooking<NormalCustomer> b2 = new ServiceBooking<>("b2", nc1, LocalDateTime.of(2025, 01, 25, 8, 20), "replace battery", 900);
+        ServiceBooking<PlatinumCustomer> b3 = new ServiceBooking<>("b3", pc1, LocalDateTime.of(2025, 10, 15, 10, 35), "wheel alignment", 500);
+        ServiceBooking<NormalCustomer> b2 = new ServiceBooking<>("b2", nc1, LocalDateTime.of(2024, 12, 16, 8, 20), "replace battery", 900);
+
+        //adding service booking list to customer
+        nc1.addServiceBooking(b2);
+        pc1.addServiceBooking(b1);
+        pc1.addServiceBooking(b3);
 
 //        //customer-service booking map
 //        System.out.println("\nservices done for customer : ");
@@ -125,25 +130,116 @@ public class Main {
         }
 
         // Get and display all service bookings
-        System.out.println("\nAll Service Bookings:");
+        System.out.print("\nAll Service Bookings:");
         serviceManagement.getAllServiceBookings().forEach((customer, bookings) -> {
-            System.out.println(customer.getName() + " has the following bookings:");
+            System.out.println("\n"+customer.getName() + "'s service bookings :");
             bookings.forEach(System.out::println);
         });
 
-        // Get and display service bookings for a specific customer (e.g., Hanan)
-        System.out.println("\nService Bookings for Hanan:");
-        List<ServiceBooking> hananBookings = serviceManagement.getServiceBookingsByCustomer(pc1);
-        hananBookings.forEach(System.out::println);
+//        // Get and display service bookings for a specific customer (e.g., Hanan)
+//        System.out.println("\nService Bookings for Hanan:");
+//        List<ServiceBooking> hananBookings = serviceManagement.getServiceBookingsByCustomer(pc1);
+//        hananBookings.forEach(System.out::println);
 
-        // Look up a service booking by booking ID
-        System.out.println("\nService Booking with ID 'b2':");
-        ServiceBooking foundBooking = serviceManagement.getServiceBookingById("b2");
-        if (foundBooking != null) {
-            System.out.println(foundBooking);
-        } else {
-            System.out.println("Booking not found.");
-        }
+//        // Look up a service booking by booking ID
+//        System.out.println("\nService Booking with ID 'b2':");
+//        ServiceBooking foundBooking = serviceManagement.getServiceBookingById("b2");
+//        if (foundBooking != null) {
+//            System.out.println(foundBooking);
+//        } else {
+//            System.out.println("Booking not found.");
+//        }
+
+        Predicate<ServiceBooking> serviceInNextWeek = booking -> booking.getServiceDate().isBefore(LocalDateTime.now().plusDays(7));
+
+        System.out.println("\nServices scheduled within the next 7 days:");
+        serviceManagement.getAllServiceBookings().forEach((customer, bookings) -> {
+            bookings.stream().filter(serviceInNextWeek).forEach(System.out::println);
+        });
+
+        List<Customer> customers=new ArrayList<>(Arrays.asList(pc1,pc2,nc1,nc2));
+        Consumer<Customer> printInvoice = customer -> {
+            double totalCost = customer.getServiceBookings().stream().mapToDouble(ServiceBooking::getCost).sum();
+            System.out.println("\nInvoice for " + customer.getName() + ":");
+            customer.getServiceBookings().forEach(booking -> {
+                System.out.println("Service ID: " + booking.getBookingId() + ", Type: " + booking.getServiceType() + ", Cost: " + booking.getCost());
+            });
+            System.out.println("Total Cost: " + totalCost);
+        };
+        System.out.println("Detailed invoice : ");
+        customers.forEach(printInvoice);
+//        printInvoice.accept(pc1);
+
+        //15% discount for cuatomers more than 1 service
+        Function<Customer,Double> applyDiscount=customer -> {
+            int serviceCount=customer.getServiceBookings().size();
+            double totalCost=customer.getServiceBookings().stream().mapToDouble(ServiceBooking::getCost).sum();
+            if(serviceCount>1)
+                return 0.85*totalCost;
+            return totalCost;
+        };
+        System.out.println("\ndiscounted price for hanan : "+applyDiscount.apply(pc1));
+        System.out.println("\ndiscounted price for rajesh : "+applyDiscount.apply(nc1));
+
+        //generate random booking
+        Supplier<ServiceBooking<?>> randomServiceBooking = () -> {
+            Random random = new Random();
+            String randomServiceId = "b" + random.nextInt(100);
+            Customer randomCustomer = random.nextBoolean() ? pc2 : nc2;
+            LocalDateTime randomServiceDate = LocalDateTime.now().plusDays(random.nextInt(30));  // Random date within the next 30 days
+            String[] serviceTypes = {"oil change", "brake inspection", "battery check", "wheel alignment"};
+            String randomServiceType = serviceTypes[random.nextInt(serviceTypes.length)];
+            double randomCost = 100 + random.nextDouble() * 500;  // Random cost between 100 and 600
+            return new ServiceBooking<>(randomServiceId, randomCustomer, randomServiceDate, randomServiceType, randomCost);
+        };
+
+        // Example: Generate a random service booking
+        System.out.println("\nGenerated Random Service Booking: ");
+        System.out.println(randomServiceBooking.get());
+
+//
+//        // 2. Consumer: Print a detailed invoice for a customer
+//        Consumer<NormalCustomer> printInvoice = customer -> {
+//            double totalCost = customer.getServiceBookings().stream().mapToDouble(ServiceBooking::getCost).sum();
+//            System.out.println("Invoice for " + customer.getName() + ":");
+//            customer.getServiceBookings().forEach(booking -> {
+//                System.out.println("Service ID: " + booking.getBookingId() + ", Type: " + booking.getServiceType() + ", Cost: " + booking.getCost());
+//            });
+//            System.out.println("Total Cost: " + totalCost);
+//        };
+//
+//        // Example: Print invoice for Rajesh
+//        System.out.println("\nDetailed Invoice for Rajesh:");
+//        printInvoice.accept(nc1);
+//
+//        // 3. Function: Apply 15% discount for customers with more than 3 services
+//        Function<Customer, Double> applyDiscount = customer -> {
+//            long serviceCount = customer.getServiceBookings().size();
+//            double totalCost = customer.getServiceBookings().stream().mapToDouble(ServiceBooking::getCost).sum();
+//            if (serviceCount > 3) {
+//                return totalCost * 0.85;  // Apply 15% discount
+//            }
+//            return totalCost;
+//        };
+
+//        // Example: Apply discount for Hanan
+//        System.out.println("\nTotal Cost for Hanan (after discount if applicable): " + applyDiscount.apply(pc1));
+//
+//        // 4. Supplier: Generate a random service booking for testing purposes
+//        Supplier<ServiceBooking<?>> randomServiceBooking = () -> {
+//            Random random = new Random();
+//            String randomServiceId = "b" + random.nextInt(100);
+//            Customer randomCustomer = random.nextBoolean() ? pc1 : nc1;
+//            LocalDateTime randomServiceDate = LocalDateTime.now().plusDays(random.nextInt(30));  // Random date within the next 30 days
+//            String[] serviceTypes = {"oil change", "brake inspection", "battery check", "wheel alignment"};
+//            String randomServiceType = serviceTypes[random.nextInt(serviceTypes.length)];
+//            double randomCost = 100 + random.nextDouble() * 500;  // Random cost between 100 and 600
+//            return new ServiceBooking<>(randomServiceId, randomCustomer, randomServiceDate, randomServiceType, randomCost);
+//        };
+//
+//        // Example: Generate a random service booking
+//        System.out.println("\nGenerated Random Service Booking: ");
+//        System.out.println(randomServiceBooking.get());
     }
 }
 
