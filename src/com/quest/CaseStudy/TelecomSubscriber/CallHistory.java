@@ -5,22 +5,21 @@ import java.time.LocalDateTime;
 
 public class CallHistory implements Serializable
 {
-    private String callType;
+    private CallType callType;
     private int durationInMinutes;
     private LocalDateTime timestamp;
 
-
     public CallHistory(CallType callType, int durationInMinutes, LocalDateTime timestamp) {
-        this.callType = String.valueOf(CallType.callType);
+        this.callType = callType;
         this.durationInMinutes = durationInMinutes;
         this.timestamp = timestamp;
     }
 
-    public String getCallType() {
+    public CallType getCallType() {
         return callType;
     }
 
-    public void setCallType(String callType) {
+    public void setCallType(CallType callType) {
         this.callType = callType;
     }
 

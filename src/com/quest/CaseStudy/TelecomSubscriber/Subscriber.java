@@ -14,28 +14,25 @@ public class Subscriber implements Serializable
 
     public Subscriber(int id, String name, String phone, PlanType planType, int balance)
     {
-        try {
-            if (name == null || name.isEmpty()) {
-                throw new IllegalArgumentException("Name cannot be null or empty.");
-            }
-            if (phone == null || phone.isEmpty()) {
-                throw new IllegalArgumentException("Phone number cannot be null or empty.");
-            }
-            if (balance < 0) {
-                throw new IllegalArgumentException("Balance cannot be negative.");
-            }
-
-            this.id = id;
-            this.name = name;
-            this.phone = phone;
-            this.planType = String.valueOf(planType);
-            this.balance = balance;
-            this.callHistories = new ArrayList<>();
-        }
-        catch (IllegalArgumentException e)
+        if (name == null || name.isEmpty())
         {
-            System.err.println("Exception : " + e.getMessage());
+            throw new IllegalArgumentException("Name cannot be null or empty.");
         }
+        if (phone == null || phone.isEmpty())
+        {
+            throw new IllegalArgumentException("Phone number cannot be null or empty.");
+        }
+        if (balance < 0)
+        {
+            throw new IllegalArgumentException("Balance cannot be negative.");
+        }
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.planType = String.valueOf(planType);
+        this.balance = balance;
+        this.callHistories = new ArrayList<>();
+
     }
 
     public int getId() {

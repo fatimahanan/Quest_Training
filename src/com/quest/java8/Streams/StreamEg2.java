@@ -11,13 +11,13 @@ public class StreamEg2
         ArrayList<String> names=new ArrayList<>(Arrays.asList("russell","charles","carlos","daniel"));
         List<String> uppercaseSorted=names.stream()
                 .sorted()
+                .filter(s->s.startsWith("c"))
                 .map(String::toUpperCase)
-                .filter(s->s.startsWith("C"))
                 .collect(Collectors.toList());
         System.out.println(uppercaseSorted);
 
         //filter number list of even numbers in reverse order
-        ArrayList<Integer> num=new ArrayList<>(Arrays.asList(9,1,4,2,3,6,5,8,7));
+        ArrayList<Integer> num=new ArrayList<>(Arrays.asList(3,1,2,4)); //
         List<Integer> sortedEven=num.stream()
                 .filter(n->n%2==0)
                 .sorted(Comparator.reverseOrder())
@@ -25,9 +25,27 @@ public class StreamEg2
         System.out.println(sortedEven);
 
         //find the sum
-        int sum=num.stream()
+        int sum= num.stream()
                 .reduce(0,(a,b)->a+b);
         System.out.println("sum : "+sum);
+
+        //find avg
+        OptionalDouble avg=num.stream()
+                .mapToInt(Integer::intValue)
+                .average();
+        if(avg.isPresent())
+        {
+            System.out.println("average : "+avg.getAsDouble());
+        }
+//        double avg=num.stream().mapToInt(Integer::intValue).average().orElse(0.0);
+        double avg1=num.stream()
+                .collect(Collectors.averagingInt(Integer::intValue));
+        System.out.println("average 1 : "+avg1);
+
+
+        //find count
+        long count=num.stream().count();
+        System.out.println("count : "+count);
 
         //find max
         Optional<Integer> max=num.stream()
@@ -42,12 +60,12 @@ public class StreamEg2
 
         //group by length of name
         Map<Integer,List<String>> groupedByLength=names.stream()
-                .collect(Collectors.groupingBy(s->s.length()));
+                .collect(Collectors.groupingBy(String::length));
         System.out.println("Grouped by length : "+groupedByLength);
 
         //name length map
         Map<String,Integer> nameLengthMap=names.stream()
-                .collect(Collectors.toMap(s->s,String::length));
+                .collect(Collectors.toMap(s->s,s->s.length()));
         System.out.println("Name length map : "+nameLengthMap);
 
 
@@ -56,6 +74,10 @@ public class StreamEg2
                 .toArray(String[]::new);
         System.out.println("string array : "+Arrays.toString(nameArray));
 
+        //concatenate
+        String concatenated=names.stream()
+                .collect(Collectors.joining(" ","\'","\'"));
+        System.out.println("concatenated string : "+concatenated);
     }
 
 }

@@ -1,3 +1,2 @@
-file3 content
-line1
-line2
+banana apple banana
+mango mango

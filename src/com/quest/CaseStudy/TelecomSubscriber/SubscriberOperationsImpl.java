@@ -37,8 +37,10 @@ public class SubscriberOperationsImpl implements SubsciberOperations {
         if (subscribers.isEmpty()) {
             out.println("Error! Subscriber list is empty!");
         }
-        for (Subscriber subscriber : subscribers) {
-            out.println(subscriber);
+        else {
+            for (Subscriber subscriber : subscribers) {
+                System.out.println(subscriber);
+            }
         }
     }
 
@@ -77,11 +79,11 @@ public class SubscriberOperationsImpl implements SubsciberOperations {
             if (subscriber.getId() == id && subscriber.getPlanType().equalsIgnoreCase("postpaid")) {
                 for (CallHistory call : subscriber.getCallHistories()) {
                     int duration = call.getDurationInMinutes();
-                    if (call.getCallType().equalsIgnoreCase("local"))
+                    if (call.getCallType().name().equalsIgnoreCase("local"))
                         total += duration;
-                    else if (call.getCallType().equalsIgnoreCase("std"))
+                    else if (call.getCallType().name().equalsIgnoreCase("std"))
                         total += duration * 2;
-                    else if (call.getCallType().equalsIgnoreCase("isd"))
+                    else if (call.getCallType().name().equalsIgnoreCase("isd"))
                         total += duration * 5;
                     else {
                         out.println("Error! Invalid call type!");

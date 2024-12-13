@@ -35,7 +35,7 @@ public class Weather implements WeatherOperations
                 }
                 if(weatherCondition!=null)
                 {
-                    c.getWeatherCondition();
+                    c.setWeatherCondition(weatherCondition);
                 }
             }
         }

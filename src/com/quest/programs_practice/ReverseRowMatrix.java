@@ -26,7 +26,7 @@ public class ReverseRowMatrix
 
     private static void reverseRow(int[][] arr)
     {
-        for(int i=0;i<3;i++)
+        for(int i=0;i<arr.length;i++)
         {
             int left=0;
             int right=arr.length-1;

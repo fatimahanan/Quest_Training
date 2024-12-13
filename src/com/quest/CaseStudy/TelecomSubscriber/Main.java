@@ -7,15 +7,7 @@ public class Main {
     public static void main(String[] args) {
         SubscriberOperationsImpl s = new SubscriberOperationsImpl();
         s.loadData();
-
-//       s.addSubscriber(1,"hanan","7568893033", PlanType.PREPAID,500);
-//       s.addSubscriber(2,"john","5679871232", PlanType.POSTPAID,300);
-//       s.addSubscriber(3,"liam","9979887852", PlanType.PREPAID,800);
 //
-//       s.recordCallHistory(1,CallType.STD,50, LocalDateTime.of(2024,12,5,4,30));
-//       s.recordCallHistory(2,CallType.LOCAL,70, LocalDateTime.of(2024,10,3,2,00));
-//       s.recordCallHistory(2,CallType.ISD,20, LocalDateTime.of(2024,12,6,3,30));
-//       s.recordCallHistory(3,CallType.STD,10,LocalDateTime.of(2024,12,7,23,10));
 
         Scanner sc = new Scanner(System.in);
         while (true) {

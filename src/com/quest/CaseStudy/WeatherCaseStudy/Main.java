@@ -23,6 +23,7 @@ public class Main
         w.addWeather(c3);
         w.addWeather(c4);
         w.addWeather(c5);
+        w.addWeather(c6);
 
         Scanner sc=new Scanner(System.in);
         int ch;

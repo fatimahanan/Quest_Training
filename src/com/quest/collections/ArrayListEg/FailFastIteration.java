@@ -16,11 +16,10 @@ public class FailFastIteration
         while (iterator.hasNext()) {
             String element = iterator.next();
             System.out.println(element);
-
-            // Structural modification during iteration
             if (element.equals("B")) {
-                list.remove(element); // This will throw ConcurrentModificationException
+                iterator.remove();//safe removal
             }
+//            list.add("D"); //this will throw concurrent modification
         }
     }
 }

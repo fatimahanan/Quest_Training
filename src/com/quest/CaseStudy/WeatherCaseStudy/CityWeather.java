@@ -1,5 +1,7 @@
 package com.quest.CaseStudy.WeatherCaseStudy;
 
+import java.util.Objects;
+
 public class CityWeather
 {
     private String cityName;
@@ -51,4 +53,5 @@ public class CityWeather
     {
         return "City : [cityName=" + cityName + ", currentTemperature=" + currentTemperature + ", humidityPercentage="+humidityPercentage+"]";
     }
+
 }

@@ -1,5 +1,6 @@
 package com.quest.java8.practice;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -25,5 +26,13 @@ public class LocalDateEg
         LocalDateTime added = currentDateTime.plus(2, ChronoUnit.YEARS);
         String addedDate=added.format(formatter);
         System.out.println("added 2 years : "+addedDate);
+
+        LocalDate date=LocalDate.now();
+        System.out.println("\nlocal date : "+date);
+        DateTimeFormatter dtf=DateTimeFormatter.ofPattern("dd/MM/yy");
+        System.out.println(date.format(dtf));
+        String dateStr="10/02/24";
+        LocalDate date1=LocalDate.parse(dateStr,dtf);  //parsing string to dateformat
+        System.out.println(date1);
     }
 }

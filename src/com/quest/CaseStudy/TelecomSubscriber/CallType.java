@@ -6,7 +6,7 @@ public enum CallType
 {
     LOCAL,
     STD,
-    ISD, callType;
+    ISD;
 
     @Override
     public String toString()
