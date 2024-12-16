@@ -17,7 +17,10 @@ public class SubscriberOperationsImpl implements SubsciberOperations {
     @Override
     public void addSubscriber(int id, String name, String phone, PlanType planType, int balance) {
         Subscriber subscriber = new Subscriber(id, name, phone, planType, balance);
-        subscribers.add(subscriber);
+        if(!subscribers.contains(subscriber))
+            subscribers.add(subscriber);
+        else
+            out.println("subscriber with same phone no exists");
     }
 
     @Override

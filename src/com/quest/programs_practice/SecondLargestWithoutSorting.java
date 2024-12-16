@@ -1,9 +1,9 @@
-package com.quest.practical;
+package com.quest.programs_practice;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class secondLargest
+public class SecondLargestWithoutSorting
 {
     public static void main(String[] args)
     {

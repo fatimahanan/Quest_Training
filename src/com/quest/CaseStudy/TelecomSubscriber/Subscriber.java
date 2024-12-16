@@ -2,6 +2,7 @@ package com.quest.CaseStudy.TelecomSubscriber;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Subscriber implements Serializable
 {
@@ -94,4 +95,15 @@ public class Subscriber implements Serializable
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Subscriber that = (Subscriber) o;
+        return id == that.id || Objects.equals(phone, that.phone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, phone);
+    }
 }
